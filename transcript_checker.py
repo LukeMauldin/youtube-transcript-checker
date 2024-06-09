@@ -1,3 +1,4 @@
+import argparse
 import requests
 from youtube_transcript_api import YouTubeTranscriptApi
 import json
@@ -68,8 +69,13 @@ def split_text_into_chunks(text, max_length):
     return chunks
 
 def main():
-    video_id = "7__r4FVj-EI"  # Replace with the actual video ID
+    #video_id = "7__r4FVj-EI"  # Replace with the actual video ID
     #video_id = "IxGvm6btP1A"  # Not approriate
+    parser = argparse.ArgumentParser(description="Check YouTube transcript for inappropriate content.")
+    parser.add_argument('video_id', type=str, help='The YouTube video ID')
+    args = parser.parse_args()
+
+    video_id = args.video_id
     transcript_text = get_youtube_transcript(video_id)
     if transcript_text:
         #print("Transcript fetched successfully. ", transcript_text)
